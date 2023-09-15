@@ -3,29 +3,48 @@ import { Link } from "react-router-dom";
 
 export default function ToDo() {
    
-    const [atividade, setAtividade]= useState("");
+    const [produto, setProduto]= useState("");
+    const [marca, setMarca]= useState("");
+    const [preco, setPreco]= useState("");
     const [lista,setLista]= useState([]);
+    const [id,setId] = useState(1);
 
     const salvar = (e) => {
         e.preventDefault();
         setLista([...lista,{
-            atividade: atividade
-        }])
+            produto: produto, marca: marca, preco: preco, id:id
+        }]);
+        setId(id + 1);
+        setProduto("");
+        setMarca("");
+        setPreco("");
+
     }
 
     return (
         <div>
-            <h1>Lista de Atividades</h1>
+            <h1>Produtinhos</h1>
             <Link to="/">home</Link>
 
-        <p>{atividade}</p>
+        <p>{produto}, {marca}, {preco}</p>
 
             <form onSubmit={salvar}>
-                <input value={atividade}
-                    onChange={(e) => setAtividade(e.target.value)}/>
-                <button>ADD</button>
+                <p>Produto:</p>
+                <input value={produto} type="text"
+                    onChange={(e) => setProduto(e.target.value)}/>
+
+                <p>Marca:</p>
+                <input value={marca} type="text"
+                    onChange={(e) => setMarca(e.target.value)}/>
+
+                <p>Preço:</p>
+                 <input value={preco} type="number"
+                    onChange={(e) => setPreco(e.target.value)}/>
+
+
+                <button class="btn btn-outline-dark">ADD</button>
             </form>
-           {lista.map((ativ)=> <p>{ativ.atividade}</p>)}
+           {lista.map((ativ)=> <p>Produto: {ativ.produto}, Marca: {ativ.marca}, R$: {ativ.preco}</p>)}
         </div>
     );
 }
