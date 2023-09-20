@@ -7,6 +7,5 @@ export default function Home() {
             <h1>Home</h1>
             <Link to="/todo">todo</Link>
         </div>
-
     );
 }
