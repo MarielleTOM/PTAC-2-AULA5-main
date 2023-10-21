@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function ToDo() {
@@ -10,6 +10,10 @@ export default function ToDo() {
     const [img,setImg]= useState("");
     const [id,setId] = useState(1);
 
+    useEffect(()=> {localStorage.setItem("Lista", JSON.stringify(lista));
+},
+ [lista]);
+    
     const salvar = (e) => {
         e.preventDefault();
         setLista([...lista,{
@@ -24,12 +28,7 @@ export default function ToDo() {
     }
 
     const remover = (id) => {
-        const limpaLista =[];
-        lista.map((lista) => {
-            if(lista.id !== id){
-                limpaLista.push(lista);
-            }
-        })
+        const limpaLista = lista.filter((item) => item.id !== id);
         setLista(limpaLista);
     }
 
