@@ -61,6 +61,9 @@ export default function ToDo() {
             </form>
            {lista.map((ativ)=> 
                 <div key= {ativ.id}>
+                    <Link to={'/detalhe/${ativ.id}'}>
+                    <p>{ativ.atividade}</p>
+                    </Link>
                     <p><img src={ativ.img} alt=""/></p>
                     <p>Produto: {ativ.produto}, Marca: {ativ.marca}, R$: {ativ.preco} </p>
                      <br/>
